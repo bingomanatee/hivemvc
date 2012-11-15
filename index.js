@@ -1,4 +1,6 @@
 module.exports = {
-    component: require('./lib/hive-component')
-    , action: require('./lib/hive-action')
+	Component: require('./lib/component'),
+	Action:    require('./lib/action'),
+	Tree:      require('./lib/tree'),
+	Model:     require('./lib/model')
 }

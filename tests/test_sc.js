@@ -2,7 +2,7 @@ var util = require('util');
 var tap = require('tap');
 var _ = require('underscore');
 
-var abc = require('./abc');
+var abc = require('./../test_resources/abc');
 
 tap.test('basic a doubler functionality', function(t){
     var a = new abc.A_Doubler();

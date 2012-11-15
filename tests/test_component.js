@@ -1,4 +1,4 @@
-var hc = require('hive-mvc').component;
+var action = require('./../index').component;
 var tap = require('tap');
 var path = require('path');
 var util = require('util');

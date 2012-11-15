@@ -6,7 +6,8 @@
 		"start":"node index"
 	},
 	"dependencies":{
-		"underscore":"*",
-		"tap":       "*"
+		"underscore":   "*",
+		"tap":          "*",
+		"configuration":"*"
 	}
 }
