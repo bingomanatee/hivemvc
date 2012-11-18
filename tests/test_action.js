@@ -62,7 +62,7 @@ if (true) tap.test('respond with input and output', function(t){
 
 })
 
-if (false) tap.test('exit out via errors', function(t){
+if (true) tap.test('exit out via errors', function(t){
 
 	Action({
 		on_input: function(ctx, cb){
@@ -97,6 +97,4 @@ if (true) tap.test('going postal', function(t){
 			t.end();
 		})
 	})
-
-
 })
