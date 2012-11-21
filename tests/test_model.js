@@ -5,17 +5,17 @@ var util = require('util');
 var _ = require('underscore');
 var Gate = require('gate');
 
-var beta = {id: 2, name: 'beta', created: 200};
-var gamma = {id: 3, name: 'gamma', created: 400};
+var beta = {id: 2, name: 'beta', gender: 'm', created: 200};
+var gamma = {id: 3, name: 'gamma', gender: 'f',  created: 400};
 
 var _model_mixin = {
 	name: 'foo_model',
 	data: [
-		{id: 1, name: 'alpha', created: 100},
+		{id: 1, name: 'alpha', gender: 'm',  created: 100},
 		beta,
 		gamma,
-		{id: 4, name: 'delta', created: 300},
-		{id: 5, name: 'omega', created: 100}
+		{id: 4, name: 'delta', gender: 'f',  created: 300},
+		{id: 5, name: 'omega', gender: 'f',  created: 100}
 	]
 
 }
@@ -25,10 +25,12 @@ var rec_count = 50;
 tap.test('get and put', function (t) {
 
 	Model(_model_mixin, {_pk: 'id'}, function (err, model) {
-
+		debugger;
 		model.init(function () {
+			debugger;
 			model.get(3, function (err, record) {
 				t.deepEqual(record, gamma, 'record id 3 == gamma');
+				debugger;
 
 				var fifi = {id: 6, name: 'fifi', created: 200};
 				model.put(fifi, function (err, ff) {
@@ -36,13 +38,16 @@ tap.test('get and put', function (t) {
 					model.get(6, function (err, ff3) {
 						if (err) throw err;
 						t.deepEqual(ff3, fifi, 'found fifi');
+						debugger;
 
 						model.count(function (err, c) {
 							t.equal(c, 6, 'start with six records');
+							debugger;
 
 							model.delete(2, function (err, record) {
 								t.deepEqual(record, beta, 'return from delete == beta');
 								model.count(function (err, c2) {
+									debugger;
 									t.equal(c2, 5, 'after delete, five records left');
 									t.end();
 								})
@@ -65,7 +70,13 @@ tap.test('query', function (t) {
 				//console.log('hit on created:100 %s', util.inspect(hits));
 				var names = _.sortBy(_.pluck(hits, 'name'), _.identity);
 				t.deepEqual(names, ['alpha', 'omega'], 'found created at 100');
-				t.end();
+				model.find({created: 100, gender: 'f'}, function(err, hits2){
+
+					//console.log('hit on created:100 %s', util.inspect(hits));
+					var names = _.sortBy(_.pluck(hits2, 'name'), _.identity);
+					t.deepEqual(names, ['omega'], 'found f created at 100');
+					t.end();
+				})
 			})
 		})
 	})
