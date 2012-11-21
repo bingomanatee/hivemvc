@@ -8,7 +8,7 @@
 	"dependencies": {
 		"underscore":     "*",
 		"tap":            "*",
-		"configuration":  "*",
+		"hive-configuration":  "*",
 		"support":        "*",
 		"cli-table":      "*",
 		"mkdirp":         "*",

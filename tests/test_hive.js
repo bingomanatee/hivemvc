@@ -10,10 +10,11 @@ var actions_loader = require(path.resolve(__dirname, '../lib/hive/loaders/action
 
 var spawned = false;
 var spawn_target = path.resolve(__dirname, '../test_resources/spawn');
+var actions_path = path.resolve(spawn_target, 'actions');
+var bar_path = path.resolve(spawn_target, 'actions/bar');
 
 tap.test('action loader', function (t) {
 
-	var bar_path = path.resolve(spawn_target, 'actions/bar');
 	action_loader(function (err, al) {
 
 		al.load(function (err, result) {
@@ -28,11 +29,8 @@ tap.test('action loader', function (t) {
 
 tap.test('actions loader', function (t) {
 
-	var actions_path = path.resolve(spawn_target, 'actions');
-
 	actions_loader(function (err, asl) {
 		asl.load(function (err, result) {
-			;
 			var actions = _.map(asl.actions, function (action_loader) {
 				return action_loader.get_config('root')
 			})
@@ -50,11 +48,31 @@ tap.test('actions loader', function (t) {
 
 })
 
+tap.test('hive loader', function (t) {
+	var hive = Hive({}, {});
+	hive.load(function (err, result) {
+		var actions = _.map(hive.actions, function (action_loader) {
+			return action_loader.get_config('root')
+		});
+		actions = _.sortBy(actions, _.identity);
+
+		var expected = _.map(['bar', 'foo'], function (action) {
+			return path.resolve(actions_path, action)
+		});
+
+		t.deepEqual(actions, expected, 'found foo and bar');
+		t.end();
+
+	}, spawn_target);
+});
+
 tap.test('write hive action', function (t) {
 
 	Hive.spawn(spawn_target, {reset: true, actions: ['foo', 'bar']}, function (err, result) {
 		if (err) {
 			console.log(err);
+			t.end();
+			return;
 		}
 
 		_.each([
@@ -73,4 +91,4 @@ tap.test('write hive action', function (t) {
 		t.end();
 	})
 
-})
+});
