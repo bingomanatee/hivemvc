@@ -1,3 +1,5 @@
+console.log('loading hive-mvc');
+
 module.exports = {
 	Action:   require('./lib/action'),
 	Tree:     require('./lib/tree'),

@@ -16,7 +16,8 @@
 		"hive-component": "*",
 		"hive-loader":    "*",
 		"async":          "*",
-		"gate":           "*"
+		"gate":           "*",
+"request": "*"
 
 	}
 }
