@@ -13,7 +13,7 @@ var express = require('express')
 var app = express();
 
 app.configure(function () {
-	app.set('port', process.env.PORT || 3000);
+	app.set('port', process.env.PORT || 3010);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'ejs');
 	app.use(express.favicon());
@@ -25,6 +25,7 @@ app.configure(function () {
 	app.use(app.router);
 	// app.use(require('less-middleware')({ src: __dirname + '/public' }));
 	app.use(express.static(path.join(__dirname, 'public')));
+	app.use(hive.Static.resolve);
 });
 
 app.configure('development', function () {
@@ -34,10 +35,9 @@ app.configure('development', function () {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-http.createServer(app).listen(app.get('port'), function () {
+module.exports = http.createServer(app).listen(app.get('port'), function () {
 	console.log("Express server listening on port " + app.get('port'));
 	var alpha_hive = path.resolve(__dirname, 'hives/alpha');
-	console.log('loading path %s ', alpha_hive);
 	hive.Hive({}, {root: alpha_hive}, function(err, hc){
 		hc.init(function(){
 			hc.load(function(){

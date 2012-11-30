@@ -1,6 +1,9 @@
 {
-	"name": "foo",
+	"name":   "foo",
 	"routes": {
 		"get": "/foo"
+	},
+	"static": {
+		"/alpha": "/foo/alpha"
 	}
 }
