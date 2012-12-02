@@ -6,5 +6,6 @@ module.exports = {
 	Model:    require('./lib/model'),
 	Hive:     require('./lib/hive'),
 	Resource: require('./lib/resource'),
-	Static:   require('./lib/static')
+	Static:   require('./lib/static'),
+	Frame:    require('./lib/frame')
 }
