@@ -12,7 +12,7 @@ if (true) tap.test('going postal', function(t){
 			cb(null, ctx);
 		}
 	}, {}, function(err, action){
-		action.respond({'$req': {method: 'post'}}, function(err, ctx2, output){
+		action.respond({'$req': {method: 'post'}, '$out': {}}, function(err, ctx2, output){
 			t.deepEqual(ctx2.tags, ['alpha', 'beta', 'gamma'], 'got to post process');
 			t.end();
 		})

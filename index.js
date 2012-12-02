@@ -8,4 +8,4 @@ module.exports = {
 	Resource: require('./lib/resource'),
 	Static:   require('./lib/static'),
 	Frame:    require('./lib/frame')
-}
+};
