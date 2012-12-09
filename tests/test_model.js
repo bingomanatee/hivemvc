@@ -187,7 +187,7 @@ if (false) tap.test('dump data', function (t) {
 								dumper_loader_model.all(function (err, data) {
 									_.each(data, function (record) {
 										var l = gate.latch();
-										debugger;
+
 										dumper_model.get(record.id, function (err, original) {
 											if (err) {
 												console.log('err: %s', err.message);

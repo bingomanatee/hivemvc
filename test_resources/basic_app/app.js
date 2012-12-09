@@ -19,7 +19,8 @@ module.exports = function(port){
 	app.configure(function () {
 		app.set('port', port || 3000);
 		app.set('views', __dirname + '/views');
-		app.set('view engine', 'ejs');
+		//app.set('view engine', 'ejs');
+		app.engine('html', require('ejs').renderFile);
 		app.use(express.favicon());
 		// app.use(express.logger('dev'));
 		app.use(express.bodyParser());
@@ -46,7 +47,7 @@ module.exports = function(port){
 
 	server.listen(app.get('port'), function () {
 		console.log("Express server listening on port " + app.get('port'));
-
+/*
 		var alpha_hive = path.join(__dirname, 'hives/alpha');
 		hive.Hive({}, {root: alpha_hive}, function (err, hc) {
 			hc.init(function () {
@@ -66,7 +67,14 @@ module.exports = function(port){
 				})
 			})
 		});
+*/
 
+		var frame = hive.Frame({}, {root: path.join(__dirname, 'frames/test_frame')});
+		frame.load(function(){
+			frame.serve(function(){
+				console.log('frame served');
+			}, app);
+		});
 
 	});
 

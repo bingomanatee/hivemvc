@@ -7,5 +7,6 @@ module.exports = {
 	Hive:     require('./lib/hive'),
 	Resource: require('./lib/resource'),
 	Static:   require('./lib/static'),
-	Frame:    require('./lib/frame')
+	Frame:    require('./lib/frame'),
+	Context:  require('./lib/context')
 };
