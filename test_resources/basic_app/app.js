@@ -47,34 +47,15 @@ module.exports = function(port){
 
 	server.listen(app.get('port'), function () {
 		console.log("Express server listening on port " + app.get('port'));
-/*
-		var alpha_hive = path.join(__dirname, 'hives/alpha');
-		hive.Hive({}, {root: alpha_hive}, function (err, hc) {
-			hc.init(function () {
-				hc.load(function () {
-					hc.serve(function () {
-					}, app);
-				})
-			})
-		});
-
-		var sess_hive = path.join(__dirname, 'hives/ses');
-		hive.Hive({}, {root: sess_hive}, function (err, hc) {
-			hc.init(function () {
-				hc.load(function () {
-					hc.serve(function () {
-					}, app);
-				})
-			})
-		});
-*/
 
 		var frame = hive.Frame({}, {root: path.join(__dirname, 'frames/test_frame')});
-		frame.load(function(){
-			frame.serve(function(){
-				console.log('frame served');
-			}, app);
-		});
+		frame.init(function(){
+			frame.load(function(){
+				frame.serve(function(){
+					console.log('frame served');
+				}, app);
+			});
+		})
 
 	});
 

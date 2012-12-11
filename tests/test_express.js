@@ -14,6 +14,10 @@ tap.test('basic hive request.io', function (t) {
 
 	setTimeout(function () {
 
+		var Frame = hive_mvc.Frame;
+
+		t.equals(Frame.list.count(), 2, 'two frames in frame list');
+
 		var res = hive_mvc.Resource.list.resource('view_helper', 'foo');
 		t.ok(res, 'found view helper foo');
 
