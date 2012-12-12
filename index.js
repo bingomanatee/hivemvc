@@ -17,15 +17,25 @@ function Hive_MVC() {
 
 util.inherits(Hive_MVC, events.EventEmitter);
 
+Hive_MVC.prototype.load_frames = function(root, cb){
+	var frames_loader = require('./lib/loaders/frames_loader');
+	var fl = frames_loader(root);
+	fl.load(cb);
+};
+
 Hive_MVC.prototype.serve = function(app){
-	var actions = this.Action.list.all();
 	function _serve(action){
+		if(!action.TYPE == 'action'){
+			throw new Error(util.format('non_action in actions list: %s', util.inspect(action)));
+		}
 		action.serve(app);
 	}
 
-	actions.forEach(_serve);
-
 	this.on('action', _serve);
+	var actions = this.Action.list.all(function(err, actions){
+
+		actions.forEach(_serve);
+	});
 };
 
 module.exports = new Hive_MVC();

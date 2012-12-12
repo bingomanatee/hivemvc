@@ -1,4 +1,7 @@
-var Hive = require('./../index').Hive;
+var mvc = require('./../index');
+var Hive = mvc.Hive;
+var Action = mvc.Action;
+
 var tap = require('tap');
 var path = require('path');
 var util = require('util');
@@ -9,74 +12,71 @@ var action_loader = require('./../lib/loaders/action_loader');
 var actions_loader = require('./.././lib/loaders/actions_loader');
 
 var spawned = false;
-var spawn_target = path.resolve(__dirname, '../test_resources/spawn');
-var actions_path = path.resolve(spawn_target, 'actions');
-var bar_path = path.resolve(spawn_target, 'actions/bar');
+var hive_test_spawn_dir = path.resolve(__dirname, '../test_resources/spawn');
+var hive_test_dir = path.resolve(__dirname, '../test_resources/hive_test');
+var hive_test_dir_2 = path.resolve(__dirname, '../test_resources/hive_test2');
+var sa_root = path.resolve(__dirname, '../test_resources/single_action');
+var actions_path = path.resolve(hive_test_dir, 'actions');
+var single_path = path.resolve(sa_root, 'single');
 
 if (true) {
 	tap.test('action loader', function (t) {
+		var action = Action({}, {root: single_path});
+		action.init(function () {
 
-		action_loader(function (err, al) {
-
-			al.load(function (err, result) {
-				t.equals(al.action_script, path.resolve(bar_path, 'bar_action.js'), 'found action script');
-				t.equals(al.action_config, path.resolve(bar_path, 'bar_config.json'), 'found config');
-				t.end();
-			})
-
-		}, bar_path);
-
+			t.equals(action.action_script, path.resolve(single_path, 'single_action.js'), 'found action script');
+			t.equals(action.action_config, path.resolve(single_path, 'single_config.json'), 'found config');
+			t.end();
+		});
 	})
 }
 
-if (false) { // actions handler not usable independent of a root hive.
+if (true) { // actions handler not usable independent of a root hive.
 	tap.test('actions loader', function (t) {
 
-		actions_loader(function (err, asl) {
-			asl.load(function (err, result) {
-				var actions = _.map(asl.actions, function (action_loader) {
-					return action_loader.get_config('root')
-				})
-				actions = _.sortBy(actions, _.identity);
+		var asl = actions_loader(actions_path);
 
-				var expected = _.map(['bar', 'foo'], function (action) {
-					return path.resolve(actions_path, action)
-				});
+		asl.load(function () {
+			var actions = _.map(asl.actions, function (action_loader) {
+				return action_loader.get_config('root')
+			});
+			actions = _.sortBy(actions, _.identity);
 
-				t.deepEqual(actions, expected, 'found foo and bar');
-				t.end();
+			var expected = _.map(['bar', 'foo'], function (action) {
+				return path.resolve(actions_path, action)
+			});
 
-			})
-		}, actions_path);
+			t.deepEqual(actions, expected, 'found foo and bar');
+			t.end();
+
+		})
 
 	})
 }
 
 if (true) {
 	tap.test('hive loader', function (t) {
-		var hive = Hive({},  spawn_target);
+		var hive = Hive({}, hive_test_dir_2);
 		hive.init(function () {
-			hive.load(function(){
-				var action_loaders = _.map(hive.action_loaders, function (al) {
-				 return  al.get_config('root');
+				var actions = _.map(hive.actions, function (al) {
+					return  al.get_config('root');
 				});
-				action_loaders = _.sortBy(action_loaders, _.identity);
+				actions = _.sortBy(actions, _.identity);
 
 				var expected = _.map(['bar', 'foo'], function (action) {
-					return path.join(actions_path, action)
+					return path.join(hive_test_dir_2, 'actions', action)
 				});
 
-				t.deepEqual(action_loaders, expected, 'found foo and bar');
+				t.deepEqual(actions, expected, 'found foo and bar');
 				t.end();
 			})
-		})
 	});
 }
 
-if (false) {
+if (true) {
 	tap.test('write hive action', function (t) {
 
-		Hive.spawn(spawn_target, {reset: true, actions: ['foo', 'bar']}, function (err, result) {
+		Hive.spawn(hive_test_spawn_dir, {reset: true, actions: ['foo', 'bar']}, function (err, result) {
 			if (err) {
 				console.log(err);
 				t.end();
@@ -91,7 +91,7 @@ if (false) {
 				'actions/foo',
 				'actions/foo/foo_action.js',
 				'actions/foo/foo_config.json' ], function (f) {
-				var full_path = path.resolve(spawn_target, f);
+				var full_path = path.resolve(hive_test_dir_2, f);
 				t.ok(fs.existsSync(full_path), 'file exists: ' + full_path);
 				spawned = true;
 			})

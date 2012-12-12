@@ -8,13 +8,13 @@ module.exports = function (cb) {
 		name: 'post_bar',
 
 		test: function (ctx) {
-			debugger;
+
 			return ctx.$req.url == "/bar"
 		},
 
 		respond: function (ctx, output, cb) {
 			if (_DEBUG) console.log('post_bar filter: out: %s', util.inspect(output));
-			debugger;
+
 			if (output.bar && _.isArray(output.bar)){
 				output.bar.forEach(function(v, i){
 					output.bar[i] = 2 * v;

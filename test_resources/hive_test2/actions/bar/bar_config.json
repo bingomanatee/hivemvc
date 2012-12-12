@@ -1,0 +1,17 @@
+{
+    "name": "bar",
+    "routes": {
+        "get": [
+            "*/bar"
+        ],
+        "put": [
+            "*/bar"
+        ],
+        "post": [
+            "*/bar"
+        ],
+        "delete": [
+            "*/bar"
+        ]
+    }
+}

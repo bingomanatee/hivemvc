@@ -6,12 +6,11 @@ var express = require('express')
 	, routes = require('./routes')
 	, user = require('./routes/user')
 	, http = require('http')
-	, hive = require('./../../index')
+	, mvc = require('./../../index')
 	, util = require('util')
 	, path = require('path');
 
-
-module.exports = function(port){
+module.exports = function (port, cb) {
 
 	var app, server;
 	app = express();
@@ -30,7 +29,7 @@ module.exports = function(port){
 		app.use(app.router);
 		// app.use(require('less-middleware')({ src: __dirname + '/public' }));
 		app.use(express.static(path.join(__dirname, 'public')));
-		app.use(hive.Static.resolve);
+		app.use(mvc.Static.resolve);
 	});
 
 	app.configure('development', function () {
@@ -48,15 +47,13 @@ module.exports = function(port){
 	server.listen(app.get('port'), function () {
 		console.log("Express server listening on port " + app.get('port'));
 
-		var frame = hive.Frame({}, {root: path.join(__dirname, 'frames/test_frame')});
-		frame.init(function(){
-			frame.load(function(){
-				frame.serve(function(){
-					console.log('frame served');
-				}, app);
-			});
-		})
-
+		var frame = mvc.load_frames(path.join(__dirname, 'frames'), function(){
+			console.log('done initting frame');
+			mvc.serve(app);
+			if (cb) {
+				cb();
+			}
+		});
 	});
 
 	return server;
