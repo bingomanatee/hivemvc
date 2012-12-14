@@ -6,23 +6,34 @@ var Gate = require('gate');
 var tries = 500;
 var max_ms_response = 4;
 var test_interval = 200;
-var hive_mvc = require('./../index');
-var Frame = hive_mvc.Frame;
-
+var mvc = require('./../index');
+var Frame = mvc.Frame;
+var app_root = path.resolve(__dirname, './../test_resources/basic_app');
+var app_file = path.resolve(app_root, 'app');
 tap.test('basic hive request.io', function (t) {
 	var port = 3010;
-	var server = require('./../test_resources/basic_app/app')(port, function(){
-
+	var server = require(app_file)(port, function(){
+		setTimeout(function(){
 		t.equals(Frame.list.count(), 2, 'two frames in frame list');
 		if (true) {
-			var res = hive_mvc.Resource.list.resource('view_helper', 'foo');
+			var mvc = require('./../index');
+			var res = mvc.Resource.list.resource('view_helper', 'foo');
 			t.ok(res, 'found view helper foo');
 
-			var pb_res = hive_mvc.Resource.list.resource('view_helper', 'post_bar');
+			var pb_res = mvc.Resource.list.resource('view_helper', 'post_bar');
 			t.ok(pb_res, 'found view helper post_bar')
 
-			var bar_model = hive_mvc.Model.list.get('bar');
+			var bar_model = mvc.Model.list.get('bar');
 			t.ok(bar_model, 'found model bar');
+
+			t.ok(mvc.Model.list.get('$layouts'), 'layouts model exists');
+
+			var layouts = mvc.Model.list.get('$layouts').all().records();
+
+			t.equals(layouts.length, 1, 'have one layout');
+			debugger;
+			t.equals(layouts[0].get_config('template'), app_root + '/frames/test_frame/layouts/layout_foo/foo_view.html', 'layout template file');
+
 			if (true){
 				request.get('http://localhost:' + port + '/foo', function (err, res, body) {
 					body = body.replace(/[\n\r][\s]*/g, '');
@@ -78,6 +89,6 @@ tap.test('basic hive request.io', function (t) {
 		} else {
 			t.end();
 		}
-
+		}, 1000);
 	});
 })
