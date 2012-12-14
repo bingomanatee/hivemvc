@@ -12,6 +12,7 @@ module.exports = function (cb) {
 		name: 'layout',
 
 		test: function (ctx, output) {
+			console.log('testing output %s for layout_name', util.inspect(output));
 			return output.layout_name;
 		},
 

@@ -18,15 +18,8 @@ module.exports = function (cb) {
 		weight: 100,
 
 		respond: function (ctx, output, cb) {
-			console.log('arguments to layout_name: %s', util.inspect(arguments));
-		 var lm =	mvc.Model.list.get('$layouts');
-			lm.get(output.layout_name, function(err, layout){
-				if(!output.layout_name){
-					output.$layout_name = ctx.$action.get_config('layout_name');
-				}
-
-				cb(null, ctx, output);
-			})
+			output.layout_name = ctx.$action.get_config('layout_name');
+		    cb(null, ctx, output);
 		}
 	};
 

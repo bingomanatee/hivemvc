@@ -1,6 +1,6 @@
 var Gate = require('gate');
 var _ = require('underscore')
-var _DEBUG = true;
+var _DEBUG = false;
 module.exports = function(callback, mvc){
 	var layouts_dir_loader = require('loaders/layouts_dir_loader');
 
