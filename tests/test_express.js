@@ -26,15 +26,19 @@ tap.test('basic hive request.io', function (t) {
 			var bar_model = mvc.Model.list.get('bar');
 			t.ok(bar_model, 'found model bar');
 
-			t.ok(mvc.Model.list.get('$layouts'), 'layouts model exists');
+			var lm = mvc.Model.list.get('$layouts');
+			t.ok(lm, 'layouts model exists');
 
-			var layouts = mvc.Model.list.get('$layouts').all().records();
+			var layouts = lm.all().records();
 
 			t.equals(layouts.length, 1, 'have one layout');
-			var layout = layouts[0];
+			debugger;
+			var layout = lm.get('foo_layout');
 
 			t.equals(layout.get_config('template'), app_root + '/frames/test_frame/layouts/layout_foo/foo_view.html', 'layout template file');
 			t.equals(layout.get_config('name'), 'foo_layout');
+
+
 			if (true){
 				request.get('http://localhost:' + port + '/foo', function (err, res, body) {
 					body = body.replace(/[\n\r][\s]*/g, '');
