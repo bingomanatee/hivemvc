@@ -32,7 +32,6 @@ tap.test('basic hive request.io', function (t) {
 			var layouts = lm.all().records();
 
 			t.equals(layouts.length, 1, 'have one layout');
-			debugger;
 			var layout = lm.get('foo_layout');
 
 			t.equals(layout.get_config('template'), app_root + '/frames/test_frame/layouts/layout_foo/foo_view.html', 'layout template file');

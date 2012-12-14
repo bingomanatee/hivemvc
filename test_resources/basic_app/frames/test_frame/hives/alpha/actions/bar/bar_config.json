@@ -1,6 +1,7 @@
 {
-	"name": "bar",
-	"routes": {
-			  "get": "/bar"
-	}
+	"name":        "bar",
+	"routes":      {
+		"get": "/bar"
+	},
+	"layout_name": "foo"
 }
