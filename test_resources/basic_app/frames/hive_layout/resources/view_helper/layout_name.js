@@ -15,7 +15,7 @@ module.exports = function (cb) {
 			return ctx.$action.get_config('layout_name');
 		},
 
-		weight: 100,
+		weight:-100,
 
 		respond: function (ctx, output, cb) {
 			output.layout_name = ctx.$action.get_config('layout_name');

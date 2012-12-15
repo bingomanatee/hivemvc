@@ -48,7 +48,6 @@ module.exports = function (port, cb) {
 		console.log("Express server listening on port " + app.get('port'));
 
 		var frame = mvc.load_frames(path.join(__dirname, 'frames'), function(){
-			console.log('done initting frame');
 			mvc.serve(app);
 			if (cb) {
 				cb();

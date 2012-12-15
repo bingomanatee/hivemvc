@@ -52,7 +52,7 @@ tap.test('basic hive request.io', function (t) {
 						request.get('http://localhost:' + port + '/bar', function (err, res, body) {
 
 							body = body.replace(/[\n\r][\s]*/g, '');
-							t.equal(body, '<h1>Bar view</h1><ul><li>2</li><li>4</li><li>6</li></ul>', 'get (bar) body');
+							t.equal(body, '<foo><h1>Bar view</h1><ul><li>2</li><li>4</li><li>6</li></ul></foo>', 'get (bar) body');
 
 							la();
 

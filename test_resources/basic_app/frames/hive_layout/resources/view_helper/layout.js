@@ -12,22 +12,17 @@ module.exports = function (cb) {
 		name: 'layout',
 
 		test: function (ctx, output) {
-			console.log('testing output %s for layout_name', util.inspect(output));
 			return output.layout_name;
 		},
 
 		weight: 100,
 
 		respond: function (ctx, output, cb) {
-			console.log('arguments to layout: %s', util.inspect(arguments));
-
-			var lm = mvc.Model.list('$layouts');
+			var lm = mvc.Model.list.get('$layouts');
 			lm.get(output.layout_name, function (err, layout) {
-				debugger;
 				if (layout) {
 					var template = layout.get_config('template');
 					if (template) {
-						console.log('template = %s', template);
 						output.layout = template;
 					}
 				} else {

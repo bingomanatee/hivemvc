@@ -24,6 +24,9 @@ Hive_MVC.prototype.load_frames = function(root, cb){
 };
 
 Hive_MVC.prototype.serve = function(app){
+	this.emit('app', app);
+	this.app = app;
+
 	function _serve(action){
 		if(!action.TYPE == 'action'){
 			throw new Error(util.format('non_action in actions list: %s', util.inspect(action)));

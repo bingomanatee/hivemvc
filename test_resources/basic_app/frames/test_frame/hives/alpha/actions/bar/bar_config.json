@@ -3,5 +3,5 @@
 	"routes":      {
 		"get": "/bar"
 	},
-	"layout_name": "foo"
+	"layout_name": "foo_layout"
 }
