@@ -29,7 +29,6 @@ module.exports = function (port, cb) {
 		app.use(app.router);
 		// app.use(require('less-middleware')({ src: __dirname + '/public' }));
 		app.use(express.static(path.join(__dirname, 'public')));
-		app.use(mvc.Static.resolve);
 	});
 
 	app.configure('development', function () {
@@ -47,10 +46,14 @@ module.exports = function (port, cb) {
 	server.listen(app.get('port'), function () {
 		console.log("Express server listening on port " + app.get('port'));
 
-		var frame = mvc.load_frames(path.join(__dirname, 'frames'), function(){
-			mvc.serve(app);
+		var apiary = mvc.Apiary({},  path.join(__dirname, 'frames'));
+		console.log('initializing apiary');
+		apiary.init(function () {
+			console.log('apiary serving ....');
+			app.use(apiary.Static.resolve);
+			apiary.serve(app, server);
 			if (cb) {
-				cb();
+				cb(null, apiary);
 			}
 		});
 	});

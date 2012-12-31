@@ -1,4 +1,4 @@
-var Model = require('./../index').Model;
+var Model = require('./../lib/model');
 var tap = require('tap');
 var path = require('path');
 var util = require('util');
@@ -22,7 +22,6 @@ var _model_mixin = {
 
 var rec_count = 50;
 
-
 var _model_bar_mixin = {
 	name: 'bar_model',
 	data: [
@@ -37,8 +36,10 @@ var _model_bar_mixin = {
 
 }
 
+var dataspace = Model.Dataspace();
+
 tap.test('query_obj', function(t){
-	Model(_model_bar_mixin, {_pk: 'id'}, function(err, bar_model){
+	Model(_model_bar_mixin, {_pk: 'id'}, dataspace, function(err, bar_model){
 		var cs = bar_model.where('name', 'c').records();
 		t.equal(cs[0].id, 3, 'where got record c');
 

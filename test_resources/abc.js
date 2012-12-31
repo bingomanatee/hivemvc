@@ -106,13 +106,7 @@ util.inherits(B_doubler_but_no_A_doubler, A_Doubler);
 
 // and now we undo our good work:
 
-B_doubler_but_no_A_doubler.prototype = {
-    b:3,
-    a:4,
-    b_times_two:function () {
-        return this.b * 2;
-    }
-} // a copy of _b_doubler_mixin
+B_doubler_but_no_A_doubler.prototype = _.clone(_b_doubler_mixin); // a copy of _b_doubler_mixin
 
 
 /**

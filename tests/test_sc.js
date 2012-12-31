@@ -2,6 +2,13 @@ var util = require('util');
 var tap = require('tap');
 var _ = require('underscore');
 
+/**
+ * This test is a proof of the difference between
+ * the util.inherits and the "ad hoc" method of mixing in
+ * via extending the prototype.
+ *
+ */
+
 var abc = require('./../test_resources/abc');
 
 tap.test('basic a doubler functionality', function(t){

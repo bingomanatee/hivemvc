@@ -1,9 +1,10 @@
-hivemvc
+hive-mvc
 =======
 
 the next evolution of nuby-express; an advanced, RAD environment for Express sites.
 
-Nuby Express has proven successful at managing large projects; however it did not load (not respond, load) fast enough for Nodejitsu and it had issues with require pathing.
+Nuby Express has proven successful at managing large projects; however it did not load
+(not respond, load) fast enough for Nodejitsu and it had issues with require pathing.
 
 HiveMVC is going to address some of the failings of NE and provide additional functionality:
 
@@ -18,3 +19,11 @@ HiveMVC is going to address some of the failings of NE and provide additional fu
 * A reconsideration of static serving to bind static directories to specific components, allowing for functional filtering of static data
 * A callback-centric pipeline inside actions.
 
+This on top of the existing feature set of Nuby Express
+
+* Highly configurable convention based routing and configuration of actions
+* A very action-centric system of web application design
+* Support for local static file hosting at each action
+* Strong system of layouts with local hosting of layout static files
+* Designed for a large and growing single page(s) application
+* A strong family of helper libraries for your custom application

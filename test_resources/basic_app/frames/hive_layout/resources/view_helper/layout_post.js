@@ -5,7 +5,7 @@ var _DEBUG = false;
 var mvc_path = path.resolve(__dirname, './../../../../../../index');
 var mvc = require(mvc_path);
 
-module.exports = function (cb) {
+module.exports = function (cb, apiary) {
 	var _helper = {
 		post: true,
 		weight: 100,
@@ -14,8 +14,8 @@ module.exports = function (cb) {
 				output.body = html;
 				var engine = path.extname(output.layout);
 
-				if (mvc.app.engines[engine]) {
-					return mvc.app.engines[engine](output.layout, output, function (layout_err, layout_html) {
+				if (apiary.app.engines[engine]) {
+					return apiary.app.engines[engine](output.layout, output, function (layout_err, layout_html) {
 						cb(layout_err, ctx, output, layout_html);
 					})
 				}

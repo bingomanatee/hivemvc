@@ -6,6 +6,14 @@ var _DEBUG = false;
 var mvc_path = path.resolve(__dirname, './../../../../../../index');
 var mvc = require(mvc_path);
 
+function _get_js(err, item) {
+	if (item) {
+		var item_js = item.get_config('javascript', []);
+	}
+
+	cb(null, ctx, output);
+}
+
 module.exports = function (cb) {
 
 	var helper = {
@@ -19,16 +27,10 @@ module.exports = function (cb) {
 
 		respond: function (ctx, output, cb) {
 			var lm = mvc.Model.list.get('$layouts');
-			lm.get(output.layout_name, function (err, layout) {
-				if (layout) {
-					var layout_js = layout.get_config('javascript', []);
-				} else {
-					console.log('cannot find layout %s', output.layout_name);
-				}
-
-				cb(null, ctx, output);
-			})
+			mvc._on('layout', _get_js, lm);
+			cb();
 		}
+
 	};
 
 	cb(null, helper);

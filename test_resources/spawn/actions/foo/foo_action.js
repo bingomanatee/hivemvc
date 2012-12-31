@@ -1,6 +1,7 @@
 var _ = require('underscore');
 var util = require('util');
 var gate = require('gate');
+
 module.exports = {
 
 	/* *********** GET RESPONSES ************** */
@@ -14,18 +15,7 @@ module.exports = {
 	on_get_input: function(context, cb){
 		var self = this;
 
-		var gate = Gate.create();
-		
-		//this.get_config('foo', 'model').get(pk, 'latch')
-		
-		gate.await(function(err, results){
-			if (err){
-				cb(err);
-			} else {
-				context.data = results;
-				cb(null, context);
-			}
-		});
+		cb(null, context);
 	},
 
 	on_get_process: function(context, cb){
@@ -51,18 +41,7 @@ module.exports = {
 	on_put_input: function(context, cb){
 		var self = this;
 
-		var gate = Gate.create();
-
-		//this.get_config('foo', 'model').get(pk, 'latch')
-
-		gate.await(function(err, results){
-			if (err){
-				cb(err);
-			} else {
-				context.data = results;
-				cb(null, context);
-			}
-		});
+		cb(null, context);
 	},
 
 	on_put_process: function(context, cb){
@@ -88,18 +67,7 @@ module.exports = {
 	on_post_input: function(context, cb){
 		var self = this;
 
-		var gate = Gate.create();
-
-		//this.get_config('foo', 'model').get(pk, 'latch')
-
-		gate.await(function(err, results){
-			if (err){
-				cb(err);
-			} else {
-				context.data = results;
-				cb(null, context);
-			}
-		});
+		cb(null, context);
 	},
 
 	on_post_process: function(context, cb){
@@ -125,18 +93,7 @@ module.exports = {
 	on_delete_input: function(context, cb){
 		var self = this;
 
-		var gate = Gate.create();
-
-		//this.get_config('foo', 'model').get(pk, 'latch')
-
-		gate.await(function(err, results){
-			if (err){
-				cb(err);
-			} else {
-				context.data = results;
-				cb(null, context);
-			}
-		});
+		cb(null, context);
 	},
 
 	on_delete_process: function(context, cb){
