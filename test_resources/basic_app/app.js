@@ -44,12 +44,9 @@ module.exports = function (port, cb) {
 	});
 
 	server.listen(app.get('port'), function () {
-		console.log("Express server listening on port " + app.get('port'));
-
 		var apiary = mvc.Apiary({},  path.join(__dirname, 'frames'));
 		console.log('initializing apiary');
 		apiary.init(function () {
-			console.log('apiary serving ....');
 			app.use(apiary.Static.resolve);
 			apiary.serve(app, server);
 			if (cb) {

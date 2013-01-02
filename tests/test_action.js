@@ -17,7 +17,7 @@ if (true) {
 			}
 		});
 		action.init(function () {
-			action.respond({'$req': {method: 'post'}, '$out': {}}, function (err, ctx2, output) {
+			action.respond({'$req': {method: 'post'}, 'out': {}}, function (err, ctx2, output) {
 				t.deepEqual(ctx2.tags, ['alpha', 'beta', 'gamma'], 'got to post process');
 				t.end();
 			})
@@ -54,7 +54,7 @@ var _total_action = {
 		if (error) {
 			cb(error, ctx);
 		} else {
-			ctx.$out.set('value', total);
+			ctx.out.set('value', total);
 			cb(null, ctx);
 		}
 	}

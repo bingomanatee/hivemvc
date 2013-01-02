@@ -6,18 +6,24 @@
 		"start": "node index"
 	},
 	"dependencies": {
-		"underscore":     "*",
-		"tap":            "*",
-		"hive-configuration":  "*",
-		"support":        "*",
-		"cli-table":      "*",
-		"mkdirp":         "*",
-		"rmdir":          "*",
-		"hive-component": "*",
-		"hive-loader":    "*",
-		"async":          "*",
-		"gate":           "*",
-"request": "*"
+
+		"underscore": "*",
+		"async":      "*",
+		"gate":       "*",
+		"tap":        "*",
+
+		"mkdirp": "*",
+		"rmdir":  "*",
+
+		"hive-configuration": "*",
+		"hive-component":     "*",
+		"hive-loader":        "*",
+		"hive-model":         "*",
+
+		"support":   "*",
+		"cli-table": "*",
+
+		"request": "*"
 
 	}
 }
