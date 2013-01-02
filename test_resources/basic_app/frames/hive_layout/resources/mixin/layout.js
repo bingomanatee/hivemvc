@@ -5,7 +5,7 @@ var path = require('path');
 var layouts_dir_loader = require('loaders/layouts_dir_loader');
 var _DEBUG = false;
 
-module.exports = function (cb, apiary) {
+module.exports = function (apiary, cb) {
 	cb(null, {
 		name: 'layout_mixin',
 		respond: function (callback) {
@@ -15,6 +15,8 @@ module.exports = function (cb, apiary) {
 					console.log('scanning frame for layouts folder: %s', frame.get_config('root'));
 				}
 				var ll = layouts_dir_loader(frame.get_config('root'), apiary);
+				ll.core(apiary);
+
 				ll.load(cb ? cb : _.identity);
 			}
 

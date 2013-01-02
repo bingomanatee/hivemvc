@@ -16,8 +16,6 @@ tap.test('express static server', function (t) {
 					server.close();
 					t.end();
 				}
-
-
 		})
 
 	}, 1000);

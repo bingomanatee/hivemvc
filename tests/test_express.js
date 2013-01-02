@@ -32,8 +32,6 @@ require(app_file)(port, function(err, apiary){
 			var lm = apiary.model('$layouts');
 			t.ok(lm, 'layouts model exists');
 
-			console.log(lm);
-
 			var layouts = lm.count();
 
 			t.equals(layouts, 1, 'have one layout');

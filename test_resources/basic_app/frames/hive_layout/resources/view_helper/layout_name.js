@@ -6,7 +6,7 @@ var _DEBUG = false;
 var mvc_path = path.resolve(__dirname, './../../../../../../index');
 var mvc = require(mvc_path);
 
-module.exports = function (cb) {
+module.exports = function (apiary, cb) {
 
 	var helper = {
 		name: 'layout_name',

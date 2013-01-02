@@ -3,7 +3,7 @@ var util = require('util');
 var path = require('path');
 var _DEBUG = false;
 
-module.exports = function (cb, apiary) {
+module.exports = function (apiary, cb) {
 
 	var helper = {
 		name: 'layout',

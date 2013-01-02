@@ -2,7 +2,7 @@ var _ = require('underscore');
 var util = require('util');
 var _DEBUG = false;
 
-module.exports = function (cb) {
+module.exports = function (apiary, cb) {
 
 	var helper = {
 		name: 'post_bar',

@@ -5,7 +5,7 @@ var _DEBUG = false;
 var mvc_path = path.resolve(__dirname, './../../../../../../index');
 var mvc = require(mvc_path);
 
-module.exports = function (cb, apiary) {
+module.exports = function (apiary, callback) {
 	var _helper = {
 		post: true,
 		weight: 100,
@@ -25,5 +25,5 @@ module.exports = function (cb, apiary) {
 		}
 	};
 
-	cb(null, _helper);
+	callback(null, _helper);
 };
