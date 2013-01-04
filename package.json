@@ -8,6 +8,7 @@
 	"dependencies": {
 
 		"underscore": "*",
+		"underscore.string": "*",
 		"async":      "*",
 		"gate":       "*",
 		"tap":        "*",
