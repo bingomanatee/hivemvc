@@ -1,0 +1,6 @@
+{
+	"name": "te",
+	"routes": {
+		"get": "/tt/te"
+	}
+}

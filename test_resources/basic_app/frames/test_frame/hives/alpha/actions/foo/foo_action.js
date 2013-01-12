@@ -1,7 +1,8 @@
 module.exports = {
 
-	on_output: function (context, cb) {
-		cb(null, context, {action: 'foo', response: 2})
+	on_process: function (context, cb) {
+		context.out.setAll({action: 'foo', response: 2});
+		cb();
 	}
 
 }
