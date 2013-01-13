@@ -8,12 +8,12 @@ module.exports = {
 	},
 
 	on_process: function (context, cb) {
-		context.out.set('value', context.$session(context.key));
+		context.$out.set('value', context.$session(context.key));
 		cb(null, context);
 	},
 
 	on_output: function (context, cb) {
-		cb(null, context, context.out.data);
+		cb(null, context, context.$out.data);
 	}
 
 };

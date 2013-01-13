@@ -13,7 +13,7 @@ module.exports = function (apiary, cb) {
 		},
 
 		respond: function (ctx, output, cb) {
-			if (_DEBUG) console.log('post_bar filter: out: %s', util.inspect(output));
+			if (_DEBUG) console.log('post_bar filter: .$out: %s', util.inspect(output));
 
 			if (output.bar && _.isArray(output.bar)){
 				output.bar.forEach(function(v, i){

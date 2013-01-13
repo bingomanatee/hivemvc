@@ -1,30 +1,31 @@
 {
 	"name":         "hive-mvc",
-	"version":      "0.0.1",
+	"description":  "a high level framework for large scale sites"
+	"version":      "0.0.1a",
 	"private":      false,
 	"scripts":      {
 		"start": "node index"
 	},
 	"dependencies": {
 
-		"underscore": "*",
+		"underscore":        "*",
 		"underscore.string": "*",
-		"async":      "*",
-		"gate":       "*",
-		"tap":        "*",
+		"async":             "~0.1.22",
+		"gate":              "*",
+		"tap":               ">=0.3",
 
-		"mkdirp": "*",
-		"rmdir":  "*",
+		"mkdirp": ">=0.3.4",
+		"rmdir":  ">0.1",
 
-		"hive-configuration": "*",
-		"hive-component":     "*",
-		"hive-loader":        "*",
-		"hive-model":         "*",
+		"hive-configuration": "~0.0.1",
+		"hive-component":     "~0.0.1",
+		"hive-loader":        "~0.0.1",
+		"hive-model":         "~0.0.1",
 
-		"support":   "*",
-		"cli-table": "*",
+		"support":   "~1.1.3",
+		"cli-table": "~0.2",
 
-		"request": "*"
+		"request": "~2.12"
 
 	}
 }
