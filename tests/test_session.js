@@ -13,6 +13,7 @@ tap.test('test session get/set via session, context', function (t) {
 			{form:{key: 'user', value: 1000}},
 
 			function (err, res, body) {
+				if (err) throw err;
 				body = body.replace(/[\n\r][\s]*/g, '');
 				t.equal(body, '{"key": "user","value": "1000"}', 'got body');
 

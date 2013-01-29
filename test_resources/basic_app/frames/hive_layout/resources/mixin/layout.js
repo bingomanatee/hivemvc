@@ -17,7 +17,7 @@ module.exports = function (apiary, cb) {
 				var ll = layouts_dir_loader(frame.get_config('root'), apiary);
 				ll.core(apiary);
 
-				ll.load(cb ? cb : _.identity);
+				ll.load(_.identity);
 			}
 
 			apiary.on_frame(load_layouts);

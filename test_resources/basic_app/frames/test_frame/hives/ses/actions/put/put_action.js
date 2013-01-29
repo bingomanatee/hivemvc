@@ -19,7 +19,8 @@ module.exports = {
 	on_output: function (context, cb) {
 		var out = {key: context.key, value: context.$session(context.key)};
 		console.log('outputting %s', util.inspect(out));
-		cb(null, context, out);
+		context.$out.setAll(out);
+		cb();
 	}
 
 }

@@ -48,7 +48,7 @@ apiary.init(function () {
 		})
 	}
 
-	if (true) {
+	if (false) {
 		/**
 		 * Note - this test also validates discreteness of dataspaces between apiary and apiary2.
 		 * @type {*}
@@ -77,7 +77,7 @@ apiary.init(function () {
 		});
 	};
 
-	if (true) {
+	if (false) {
 		/**
 		 * this test is essentially the above - only validating that the hive one level up will
 		 * find the same set of actions.
@@ -107,7 +107,7 @@ apiary.init(function () {
 		})
 	}
 
-	if (true) {
+	if (false) {
 		tap.test('write hive action', function (t) {
 
 			mvc.spawn(hive_test_spawn_dir, {reset: true, actions: ['foo', 'bar']}, function (err, result) {
