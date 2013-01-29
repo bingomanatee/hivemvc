@@ -15,3 +15,7 @@
 
 0.0.1a
  * altered context management (context.out -> context.$out)
+
+0.0.1b
+ * altered bootstrap; now triggering mxiins during the serve phase.
+ * test coverage cauterized to run; more coverage needed...
