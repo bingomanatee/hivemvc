@@ -1,7 +1,7 @@
 {
 	"name":         "hive-mvc",
 	"description":  "a high level framework for large scale sites",
-	"version":      "0.0.1b",
+	"version":      "0.0.1c",
 	"private":      false,
 	"scripts":      {
 		"start": "node index"
@@ -17,8 +17,8 @@
 		"mkdirp": ">=0.3.4",
 		"rmdir":  ">0.1",
 
-		"hive-configuration": "~0.0.1",
-		"hive-component":     "~0.0.1",
+		"hive-configuration": ">=0.0.1a",
+		"hive-component":     ">=0.0.1a",
 		"hive-loader":        "~0.0.1",
 		"hive-model":         "~0.0.1",
 
