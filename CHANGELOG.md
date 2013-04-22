@@ -19,3 +19,9 @@
 0.0.1b
  * altered bootstrap; now triggering mxiins during the serve phase.
  * test coverage cauterized to run; more coverage needed...
+
+0.0.1c
+ * removed spawn to hive-queen
+
+0.0.1d
+ * allowed root_route in hive or apiary for generic frame routing

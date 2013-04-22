@@ -1,18 +1,21 @@
 {
 	"name":         "hive-mvc",
 	"description":  "a high level framework for large scale sites",
-	"version":      "0.0.1c",
+	"version":      "0.0.1d",
 	"private":      false,
 	"scripts":      {
 		"start": "node index"
 	},
+
+	"devDependencies": {
+		"tap":               ">=0.3",
+	},
 	"dependencies": {
 
-		"underscore":        "*",
 		"underscore.string": "*",
 		"async":             "~0.1.22",
-		"gate":              "*",
-		"tap":               ">=0.3",
+		"gate":              "~0.3.0",
+		"underscore":        "~1.4.4",
 
 		"mkdirp": ">=0.3.4",
 		"rmdir":  ">0.1",
