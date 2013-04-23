@@ -8,7 +8,6 @@ var _DEBUG = false;
 var mvc = require('./../index');
 var apiary = mvc.Apiary({}, __dirname);
 
-var hive_test_spawn_dir = path.resolve(__dirname, '../test_resources/spawn');
 var hive_test_dir = path.resolve(__dirname, '../test_resources/hive_test');
 var hive_test_dir_2 = path.resolve(__dirname, '../test_resources/hive_test2');
 var sa_root = path.resolve(__dirname, '../test_resources/single_action');
@@ -105,35 +104,6 @@ apiary.init(function () {
 
 
 		})
-	}
-
-	if (false) {
-		tap.test('write hive action', function (t) {
-
-			mvc.spawn(hive_test_spawn_dir, {reset: true, actions: ['foo', 'bar']}, function (err, result) {
-				if (err) {
-					console.log(err);
-					t.end();
-					return;
-				}
-
-				_.each([
-					'actions',
-					'actions/bar',
-					'actions/bar/bar_action.js',
-					'actions/bar/bar_config.json',
-					'actions/foo',
-					'actions/foo/foo_action.js',
-					'actions/foo/foo_config.json' ], function (f) {
-					var full_path = path.resolve(hive_test_dir_2, f);
-					t.ok(fs.existsSync(full_path), 'file exists: ' + full_path);
-					spawned = true;
-				})
-
-				t.end();
-			})
-
-		});
 	}
 
 })

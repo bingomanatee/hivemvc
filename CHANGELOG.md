@@ -24,4 +24,4 @@
  * removed spawn to hive-queen
 
 0.0.1d
- * allowed root_route in hive or apiary for generic frame routing
+ * allowed root_route in hive or apiary for relative frame routing; also applies to static paths
