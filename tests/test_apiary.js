@@ -50,10 +50,3 @@ if (true) {
 
 	}) // and tap.test 2
 }
-
-if (false) {
-	tap.test('test 2', function (t) {
-		t.end();
-	}) // and tap.test 2
-}
-	 

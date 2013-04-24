@@ -1,0 +1,6 @@
+{
+	"name":        "bar",
+	"routes":      {
+		"get": "/bar"
+	}
+}

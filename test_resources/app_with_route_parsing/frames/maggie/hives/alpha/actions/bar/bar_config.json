@@ -1,0 +1,11 @@
+{
+	"name":        "bar",
+	"routes":      {
+		"get": "*/bar"
+	},
+	"static": {
+	          "/txt": "/maggie/alpha/bar/txt",
+	          "/csv": "*/csv"
+	}
+
+}

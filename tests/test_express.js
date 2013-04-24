@@ -10,6 +10,7 @@ var mvc = require('./../index');
 var app_root = path.resolve(__dirname, './../test_resources/basic_app');
 var app_file = path.resolve(app_root, 'app');
 
+if (true){
 tap.test('basic hive request.io', function (t) {
 	var port = 3010;
 	require(app_file)(port, function (err, apiary) {
@@ -110,6 +111,22 @@ tap.test('basic hive request.io', function (t) {
 			else {
 				t.end();
 			}
+		}, 1000);
+	});
+})
+}
+
+tap.test('object linking', function (t) {
+	var port = 3011;
+	require(app_file)(port, function (err, apiary) {
+		setTimeout(function () {
+			if (false) apiary.Action.list.all().records().forEach(function(action){
+				console.log('action %s', util.inspect(action.config().data, false, 1));
+			});
+			apiary.Hive.list.all().records().forEach(function(action){
+				console.log('hive %s', util.inspect(action.config().data, false, 1));
+			});
+			t.end();
 		}, 1000);
 	});
 })
