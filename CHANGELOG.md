@@ -25,3 +25,6 @@
 
 0.0.1d
  * allowed root_route in hive or apiary for relative frame routing; also applies to static paths
+
+0.0.1e
+ * Some refactoring of request, mixin code for readability
