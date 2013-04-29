@@ -1,7 +1,7 @@
 {
 	"name":         "hive-mvc",
 	"description":  "a high level framework for large scale sites",
-	"version":      "0.0.1e",
+	"version":      "0.0.1f",
 	"private":      false,
 	"scripts":      {
 		"start": "node index"
