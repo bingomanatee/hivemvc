@@ -23,7 +23,7 @@
 		"hive-configuration": ">=0.0.1a",
 		"hive-component":     ">=0.0.1a",
 		"hive-loader":        "~0.0.1",
-		"hive-model":         "~0.0.1",
+		"hive-model":         ">=0.0.1f",
 
 		"support":   "~1.1.3",
 		"cli-table": "~0.2",
