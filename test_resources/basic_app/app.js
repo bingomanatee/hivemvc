@@ -40,12 +40,12 @@ module.exports = function (port, cb) {
 
 	server = http.createServer(app);
 	server.on('close', function () {
-		console.log('======== closing server');
+	//	console.log('======== closing server');
 	});
 
 	server.listen(app.get('port'), function () {
 		var apiary = mvc.Apiary({},  path.join(__dirname, 'frames'));
-		console.log('initializing apiary');
+	//	console.log('initializing apiary');
 		apiary.init(function () {
 			app.use(apiary.Static.resolve);
 			apiary.serve(app, server);

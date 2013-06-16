@@ -5,7 +5,7 @@ var util = require('util');
 var Gate = require('gate');
 
 tap.test('test session get/set via session, context', function (t) {
-	var port = 3020;
+	var port = 3022;
 	var server = require('./../test_resources/basic_app/app')(port);
 
 	setTimeout(function () {
