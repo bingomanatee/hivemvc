@@ -1,16 +1,16 @@
 {
-	"name":         "hive-mvc",
-	"description":  "a high level framework for large scale sites",
-	"version":      "0.0.1i",
-	"private":      false,
-	"scripts":      {
+	"name":        "hive-mvc",
+	"description": "a high level framework for large scale sites",
+	"version":     "0.0.1j",
+	"private":     false,
+	"scripts":     {
 		"start": "node index"
 	},
 
 	"devDependencies": {
-		"tap":               ">=0.3"
+		"tap": ">=0.3"
 	},
-	"dependencies": {
+	"dependencies":    {
 
 		"underscore.string": "*",
 		"async":             "~0.1.22",
@@ -22,7 +22,7 @@
 
 		"hive-configuration": ">=0.0.1a",
 		"hive-component":     ">=0.0.1a",
-		"hive-loader":        "~0.0.1",
+		"hive-loader":        ">=0.0.1a",
 		"hive-model":         ">=0.0.1f",
 
 		"support":   "~1.1.3",

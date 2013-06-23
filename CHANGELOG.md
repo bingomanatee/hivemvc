@@ -28,3 +28,7 @@
 
 0.0.1e
  * Some refactoring of request, mixin code for readability
+
+0.0.1j
+ * Allowing for filtered loading of selective frames
+
