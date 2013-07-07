@@ -1,0 +1,6 @@
+{
+	"name":        "lne",
+	"routes":      {
+		"get": "/long_no_error"
+	}
+}

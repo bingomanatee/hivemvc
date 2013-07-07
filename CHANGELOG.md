@@ -32,3 +32,9 @@
 0.0.1j
  * Allowing for filtered loading of selective frames
 
+0.0.2
+  * supporting new core requirements for hive-loader
+
+0.0.3
+  * adding internal logging;
+  * adding "kill switch" for long action

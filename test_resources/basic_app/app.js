@@ -8,6 +8,7 @@ var express = require('express')
 	, http = require('http')
 	, mvc = require('./../../index')
 	, util = require('util')
+	, fs = require('fs')
 	, path = require('path');
 
 module.exports = function (port, cb) {
@@ -43,8 +44,10 @@ module.exports = function (port, cb) {
 	//	console.log('======== closing server');
 	});
 
+	var log_file = path.resolve(__dirname, 'app_log.config');
+	fs.unlinkSync(log_file);
 	server.listen(app.get('port'), function () {
-		var apiary = mvc.Apiary({},  path.join(__dirname, 'frames'));
+		var apiary = mvc.Apiary({log_file: log_file, action_handler_failsafe_time: 2000},  path.join(__dirname, 'frames'));
 	//	console.log('initializing apiary');
 		apiary.init(function () {
 			app.use(apiary.Static.resolve);

@@ -40,64 +40,75 @@ if (true) {
 
 				t.equals(layout.get_config('template'), app_root + '/frames/test_frame/layouts/layout_foo/foo_view.html', 'layout template file');
 				t.equals(layout.get_config('name'), 'foo_layout');
-				request.get('http://localhost:' + port + '/foo', function (err, res, body) {
-						body = body.replace(/[\n\r][\s]*/g, '');
-						t.equal(body, '{"action": "foo","response": 2}', 'got /foo body');
 
-						var gate = Gate.create();
+				request.get('http://localhost:' + port + '/long_no_error', function (err, res, body) {
+					console.log('error: %s, body: %s' ,err, body);
+					t.ok(/lne on_process\(get\) took longer than/.test(body), 'long method no error');
 
-						(function () {
+					request.get('http://localhost:' + port + '/long_error', function (err, res, body) {
+						t.ok(/le on_process\(get\) took longer than/.test(body), 'long method error');
 
-							var la = gate.latch();
+						request.get('http://localhost:' + port + '/foo', function (err, res, body) {
+							body = body.replace(/[\n\r][\s]*/g, '');
+							t.equal(body, '{"action": "foo","response": 2}', 'got /foo body');
 
-							request.get('http://localhost:' + port + '/bar', function (err, res, body) {
+							var gate = Gate.create();
 
-								body = body.replace(/[\n\r][\s]*/g, '');
-								t.equal(body, '<foo><h1>Bar view</h1><ul><li>2</li><li>4</li><li>6</li></ul></foo>', 'get (bar) body');
+							(function () {
 
-								var i = tries;
-								var d = new Date().getTime();
-								while (--i) {
-									var l = gate.latch();
+								var la = gate.latch();
 
-									(function (j) {
-										request.get('http://localhost:' + port + '/foo', function (err, res, body) {
-											body = body.replace(/[\n\r][\s]*/g, '');
-											if (!(j % test_interval)) {
-												t.equal(body, '{"action": "foo","response": 2}', 'got body');
-											}
-											l();
-										})
-									})(i);
-								}
+								request.get('http://localhost:' + port + '/bar', function (err, res, body) {
 
-								var tel = gate.latch();
+									body = body.replace(/[\n\r][\s]*/g, '');
+									t.equal(body, '<foo><h1>Bar view</h1><ul><li>2</li><li>4</li><li>6</li></ul></foo>', 'get (bar) body');
 
-								request.get('http://localhost:' + port + '/tt/te', {}, function (err, res, body) {
-									//	console.log('=========== TE RESPONSE ===============: %s, %s,  %s', util.inspect(err), util.inspect(res), body);
+									var i = tries;
+									var d = new Date().getTime();
+									while (--i) {
+										var l = gate.latch();
 
-									t.ok('vey is not defined'.search(body), 'found "vey is not defined"');
+										(function (j) {
+											request.get('http://localhost:' + port + '/foo', function (err, res, body) {
+												body = body.replace(/[\n\r][\s]*/g, '');
+												if (!(j % test_interval)) {
+													t.equal(body, '{"action": "foo","response": 2}', 'got body');
+												}
+												l();
+											})
+										})(i);
+									}
 
-									tel();
+									var tel = gate.latch();
+
+									request.get('http://localhost:' + port + '/tt/te', {}, function (err, res, body) {
+										//	console.log('=========== TE RESPONSE ===============: %s, %s,  %s', util.inspect(err), util.inspect(res), body);
+
+										t.ok('vey is not defined'.search(body), 'found "vey is not defined"');
+
+										tel();
+									})
+
+									la();
+
+									gate.await(function () {
+										var d2 = new Date().getTime();
+										var duration = d2 - d;
+										var ms_response = duration / tries;
+										//	console.log('ms_response is %s ms', ms_response);
+										t.ok(ms_response < max_ms_response, 'at most ' + max_ms_response + ' ms per response; tries = ' +
+											tries);
+										apiary.close();
+										t.end();
+									})
 								})
+							})();
 
-								la();
+						}) // end request 3
 
-								gate.await(function () {
-									var d2 = new Date().getTime();
-									var duration = d2 - d;
-									var ms_response = duration / tries;
-									//	console.log('ms_response is %s ms', ms_response);
-									t.ok(ms_response < max_ms_response, 'at most ' + max_ms_response + ' ms per response; tries = ' +
-										tries);
-									apiary.close();
-									t.end();
-								})
-							})
-						})();
+					}) // end request 2
 
-					}
-				)
+				}) // end request 1
 
 			}, 1000);
 		});
