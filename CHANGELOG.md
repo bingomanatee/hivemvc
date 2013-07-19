@@ -38,3 +38,6 @@
 0.0.3
   * adding internal logging;
   * adding "kill switch" for long action
+
+0.1.0
+Setting production release mark. Locking down versions of critical components
