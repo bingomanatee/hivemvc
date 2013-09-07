@@ -41,3 +41,6 @@
 
 0.1.0
 Setting production release mark. Locking down versions of critical components
+
+0.1.1
+Emitting message on mixin load to allow for deferred execution of code based on loaded mixins
